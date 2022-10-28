@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aqua.springboottodo.mapper.TodoMapper">
+
+    <select id="todoList" resultType="com.aqua.springboottodo.dto.TodoDTO">
+        select * from tbl_todo
+    </select>
+
+    <insert id="todoInsert">
+        insert into tbl_todo (title, memo, dueDate) values (#{title}, #{memo}, #{dueDate})
+    </insert>
+
+    <delete id="todoDelete">
+        delete from tbl_todo where tno = #{tno}
+    </delete>
+
+    <update id="todoMod">
+        update tbl_todo set
+                            title=#{title},
+                            memo=#{memo},
+                            dueDate=#{dueDate},
+                            complete=#{complete},
+                            modDate=now()
+        where tno=#{tno}
+    </update>
+
+</mapper>
